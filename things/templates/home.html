@@ -1,11 +1,21 @@
 <html>
 <head>
-  <title>Things</title>
+  <title>My Form</title>
 </head>
 <body>
-  <h1>
-    Things
-  </h1>
-  <p>Some stuff about things goes here.</p>
+  <h1>Fill in Your Details</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% if submitted %}
+        <h2>Submitted Data</h2>
+        <ul>
+            <li>Name:{{ form.cleaned_data.name }}</li>
+            <li>Email: {{ form.cleaned_data.email }}</li>
+            <li>Age: {{ form.cleaned_data.age }}</li>
+        </ul>
+    {% endif %}
 </body>
 </html>
